@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #question{
+          font-style: normal;
+          height: 1000px;
+        }
+    </style>
+</head>
+<body>
+
+    <input id= "textElement" type="text">
+<label> Entre your bilingual text seperated by dashes
+<br>
+
+<input id="radioSpanish" type="radio" name="languagePicker">
+<label> spanish mode</label>
+<br>
+<input id="radioEnglish" type="radio" name="languagePicker">
+<label> english mode</label>
+<br>
+<input id= "odeslat" type="submit" value="submit">
+<br>
+<label id= "question"></label>
+<br>
+
+<button type="button" id="result0" ></button>
+<button type="button" id="result1" ></button>
+<button type="button" id="result2" ></button>
+<button type="button" id="result3" ></button>
+
+
+
+</div>
+
+    <script>
+document.getElementById("odeslat").onclick=function(){
+ var fullText = document.getElementById("textElement").value;
+ fullText.replace(/ *\([^)]*\) */g, "");
+ var seperated=fullText.split(/[\/-]/);
+ 
+ if ( fullText==""){
+  alert("enter words");
+ }
+ else{
+  let number= seperated.length;
+  function second(array, nth){
+    let sus=[];
+    for( let i=0; i<array.length; i+=nth)
+    {
+      sus.push(array[i])
+    };
+    return sus;
+  }
+  function first(arraya, ntha){
+    let susa=[];
+    for( let ia=1; ia<arraya.length; ia+=ntha)
+    {
+      susa.push(arraya[ia])
+    };
+    return susa;
+  }
+  
+  
+
+  let spanish= second(seperated,2);
+  let english=first(seperated,2)
+  function shuffle(array1){
+      let currentIndex = array1.length;
+
+while(currentIndex != 0){
+  let randomIndex = Math.floor(Math.random() * array1.length);
+  currentIndex-=1;
+
+  let temp = array1[currentIndex];
+  array1[currentIndex] = array1[randomIndex];
+  array1[randomIndex] = temp;
+}
+
+return array1;}
+
+
+function Alternative(x,y,z){
+  shuffle(x)
+
+  let bus= x[0];
+  const index = seperated.indexOf(bus);
+  finalWord= seperated[index+z]
+  
+  document.getElementById("question").innerHTML=x[0];
+  
+  shuffle(y);
+  let final = [y[0] ,y[1],y[2], finalWord];
+  shuffle(final);
+  
+  function assign(n, m) {
+  
+  var element = document.getElementById(n);
+  if (element) {
+    element.innerHTML = final[m];
+  }
+  
+  return m;
+}
+
+assign("result0", 0);
+assign("result1", 1);
+assign("result2", 2);
+assign("result3", 3);
+function WINLANDIA(o, p) {
+  document.getElementById(o).onclick = function () {
+    if (final[p] == finalWord) {
+      alert("Nice job");
+      Alternative(x,y,z)
+    } else {
+      alert("Wrong");
+    }
+  };
+}
+WINLANDIA("result0", 0);
+WINLANDIA("result1", 1);
+WINLANDIA("result2", 2);
+WINLANDIA("result3", 3);
+  
+/*  let choose0= document.getElementById("result0")
+  let choose1=document.getElementById("result1")
+  let choose2=document.getElementById("result2")
+  let choose3=document.getElementById("result3")
+*/
+  return x, y,z;  }
+  
+   
+    
+
+  
+
+
+  
+  
+
+  
+  
+
+
+  if(document.getElementById("radioSpanish").checked=== true ){
+    Alternative(spanish, english,+1);
+
+    
+
+}
+
+else if(document.getElementById("radioEnglish").checked=== true )
+{
+    
+  Alternative(english, spanish,-1);
+
+}
+else{
+  alert("select mode")
+}
+
+  
+  
+}
+
+
+
+ }
+  
+
+
+
+
+
+       </script>
+</body>
+</html>
