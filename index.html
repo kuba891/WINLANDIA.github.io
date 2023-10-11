@@ -5,11 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #question{
-          font-style: normal;
+        #container{
+          display: grid;
+          grid-template-columns:1fr 1fr;
+            grid-template-areas: 
+                "cssButtons cssButtons"
+                "cssButtons cssButtons";
+                height: 80%;
+                width: auto;
         }
-        #phoneVersion{
-        input style='width:auto'
+        #result0{ 
+          width:40%;
+          height:100px;
+        }
+        #result1{ 
+          width:40%;
+          height:100px;
+        }
+        #result2{ 
+          width:40%;
+          height:100px;
+        }
+        #result3{ 
+          width:40%;
+          height:100px;
         }
     </style>
 </head>
@@ -18,7 +37,7 @@
     <input id= "textElement" type="text">
 <label> Entre your bilingual text seperated by dashes
 <br>
-<div id=phoneVersion>
+
 <input id="radioSpanish" type="radio" name="languagePicker">
 <label> spanish mode</label>
 <br>
@@ -27,14 +46,24 @@
 <br>
 <input id= "odeslat" type="submit" value="submit">
 <br>
-</div>
 <label id= "question"></label>
 <br>
-
+<div id="container">
+<div class="cssButtons">
 <button type="button" id="result0" ></button>
+</div>
+<div class="cssButtons">
+
 <button type="button" id="result1" ></button>
+</div>
+<div class="cssButtons">
+
 <button type="button" id="result2" ></button>
+</div>
+<div class="cssButtons">
+
 <button type="button" id="result3" ></button>
+</div></div>
 
 
 
