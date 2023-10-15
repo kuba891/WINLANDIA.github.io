@@ -90,7 +90,7 @@
 <label id="vysledek"> </label>
 
     <script>
-      let final;
+      
 document.getElementById("odeslat").onclick=function(){
  var fullText = document.getElementById("textElement").value;
  fullText.replace(/ *\([^)]*\) */g, "");
@@ -146,27 +146,20 @@ function Alternative(x,y,z){
   final = [y[0] ,y[1],y[2], finalWord];
   shuffle(final);
   return final;
+  
 }
   function assign(n, m) {
   
   var element = document.getElementById(n);
   if (element) {
     element.innerHTML = final[m];
+    
   }
+ 
 }
+  
 
 
-function WINLANDIA(o, p) {
-  document.getElementById(o).onclick = function () {
-    if (final[p] == finalWord) {
-      document.getElementById("vysledek").innerHTML="nice job";
-      Alternative(x,y,z);
-      
-    } else {
-      document.getElementById("vysledek").innerHTML="wrong";
-    }
-  };
-}
 
 /*  let choose0= document.getElementById("result0")
   let choose1=document.getElementById("result1")
@@ -194,10 +187,10 @@ function WINLANDIA(o, p) {
 assign("result1", 1);
 assign("result2", 2);
 assign("result3", 3);
-    WINLANDIA("result0", 0);
-WINLANDIA("result1", 1);
-WINLANDIA("result2", 2);
-WINLANDIA("result3", 3);
+    WINLANDIA("result0", 0,spanish, english,+1,"result0", 0);
+WINLANDIA("result1", 1,spanish, english,+1,"result0", 1);
+WINLANDIA("result2", 2,spanish, english,+1,"result0", 2);
+WINLANDIA("result3", 3,spanish, english,+1,"result0", 3);
     
 
 }
@@ -210,15 +203,25 @@ else if(document.getElementById("radioEnglish").checked=== true )
 assign("result1", 1);
 assign("result2", 2);
 assign("result3", 3);
-    WINLANDIA("result0", 0);
-WINLANDIA("result1", 1);
-WINLANDIA("result2", 2);
-WINLANDIA("result3", 3);
+    WINLANDIA("result0", 0, english, spanish,-1,"result0", 0);
+WINLANDIA("result1", 1, english, spanish,-1,"result1", 1);
+WINLANDIA("result2", 2, english, spanish,-1,"result2", 2);
+WINLANDIA("result3", 3, english, spanish,-1,"result3", 3);
 }
 else{
   alert("select mode")
 }
-
+function WINLANDIA(o, p, x,y,z,n,m) {
+  document.getElementById(o).onclick = function () {
+    if (final[p] == finalWord) {
+      document.getElementById("vysledek").innerHTML="nice job";
+      Alternative(x,y,z);
+      assign(n, m)
+    } else {
+      document.getElementById("vysledek").innerHTML="wrong";
+    }
+  };
+}
   
   
 }
