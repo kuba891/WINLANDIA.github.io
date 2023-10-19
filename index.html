@@ -217,11 +217,15 @@ function WINLANDIA(o, p, x,y,z) {
     if (final[p] == finalWord) 
     {
       document.getElementById("vysledek").innerHTML="nice job";
-      Alternative(x,y,z);
+      document.body.style.backgroundColor="#2df758";
+      setTimeout(() => {
+        Alternative(x,y,z);
       assign("result0", 0);
 assign("result1", 1);
 assign("result2", 2);
 assign("result3", 3);
+document.body.style.backgroundColor="lightblue";
+}, 600);
       
     } else {
       document.getElementById("vysledek").innerHTML="wrong";
