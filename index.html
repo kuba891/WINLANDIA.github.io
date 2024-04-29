@@ -1,10 +1,11 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NJET_MOLOTOFF</title>
+    <title>KVIZLET</title>
     <style>
         #container{
           display: grid;
@@ -50,7 +51,9 @@
     </style>
 </head>
 <body>
+<div class="visibility">
 
+<h2> Guess section</h2>
     <input id= "textElement" type="text">
 <label> Entre your bilingual text seperated by dashes
 <br>
@@ -63,7 +66,10 @@
 <br>
 <input id= "odeslat" type="submit" value="submit">
 <br>
+</div>
 <label id= "question"></label>
+<div class="visibility">
+
 <br>
 <span id="obrazekVole"></span>
 <div id="container">
@@ -87,10 +93,24 @@
 
 </div>
 <br>
+  
+</div>
 <label id="vysledek"> </label>
 
+<label id="wantedWord"></label>
+<br>
+<label>hide guess section</label>
+<br>
+<input id="writeInput" type="text" placeholder="type the required word">
+<br>
+
+<input id= "hide" type="submit" value="return to a guess section">
+
     <script>
-      
+        document.getElementById("hide").style.display = "none";
+
+      let bus;
+      let finalWord;
 document.getElementById("odeslat").onclick=function(){
  var fullText = document.getElementById("textElement").value;
  fullText.replace(/ *\([^)]*\) */g, "");
@@ -135,11 +155,13 @@ function second(kus, array, nth){
 
 function Alternative(x,y,z){
   shuffle(x)
-
-  let bus= x[0];
+  
+    bus= x[0];
   const index = seperated.indexOf(bus);
   finalWord= seperated[index+z]
-  
+  document.getElementById("wantedWord").innerHTML=bus;
+ 
+
   document.getElementById("question").innerHTML=x[0];
   
   shuffle(y);
@@ -195,7 +217,7 @@ WINLANDIA("result3", 3,spanish, english,+1,"result0", 3);
 
 }
 
-else if(document.getElementById("radioEnglish").checked=== true )
+if (document.getElementById("radioEnglish").checked=== true )
 {
     
   Alternative(english, spanish,-1);
@@ -208,9 +230,7 @@ WINLANDIA("result1", 1, english, spanish,-1,);
 WINLANDIA("result2", 2, english, spanish,-1);
 WINLANDIA("result3", 3, english, spanish,-1, );
 }
-else{
-  alert("select mode")
-}
+
 function WINLANDIA(o, p, x,y,z) {
   document.getElementById(o).onclick = function () {
     
@@ -234,17 +254,70 @@ document.body.style.backgroundColor="lightblue";
 }
   
   
+function ifSelected(elementId) {
+  return !document.getElementById(elementId).checked;
 }
 
+if (ifSelected("radioEnglish") && ifSelected("radioSpanish")) {
+  alert("Select your mode");
+}
+
+document.getElementById("writeInput").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    var elements = document.getElementsByClassName("visibility");
+
+for(var i = 0; i < elements.length; i++) {
+    elements[i].style.display = "none";
+}    document.getElementById("hide").style.display = "block";
+
+      let guess = document.getElementById("writeInput").value;
+
+      console.log(guess);
+      console.log(finalWord);
 
 
- }
+      if(finalWord==guess){
+        document.getElementById("vysledek").innerHTML="nice job";
+      document.body.style.backgroundColor="#2df758";
+      setTimeout(() => {
+        document.body.style.backgroundColor="lightblue";
+        document.getElementById("writeInput").value = "";
+
+        Alternative(spanish, english, +1);
+
+}, 600);
+  
+      
+    }
+    else{
+      document.getElementById("vysledek").innerHTML="wrong";
+    }
+}
   
 
 
 
+})
+}
 
 
-       </script>
+
+}
+document.getElementById("hide").onclick=function(){
+  
+  var elements = document.getElementsByClassName("visibility");
+
+for(var i = 0; i < elements.length; i++) {
+    elements[i].style.display = "block";
+}  document.getElementById("hide").style.display = "none";
+
+
+}
+
+
+
+
+
+ </script>
 </body>
 </html>
